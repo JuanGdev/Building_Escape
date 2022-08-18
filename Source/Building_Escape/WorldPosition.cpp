@@ -19,8 +19,9 @@ void UWorldPosition::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	FString Log = TEXT("Example");
+	FString* PtrLog = &Log;
+	int32 lenLog = PtrLog->Len();
 }
 
 
