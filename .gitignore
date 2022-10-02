@@ -1,3 +1,7 @@
+# Visual Studio Code
+.vscode
+*.code-workspace
+
 # Visual Studio 2015 user specific files
 .vs/
 
@@ -75,12 +79,3 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-
-# Starter Content Ignored
-
-Content/StarterContent/*
-
-VSCode Files
-/.vscode/*
-BuildingEscape.code-workspace
-
