@@ -29,4 +29,5 @@ private:
 	UPROPERTY(EditAnywhere)	float m_targetYaw = 90.f;
 	float m_currentYaw, m_initialYaw;
 	UPROPERTY(EditAnywhere) ATriggerVolume* pressurePlate;
+	UPROPERTY(EditAnywhere) AActor* ActorThatOpens;
 };
