@@ -5,7 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/TriggerVolume.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
 #include "OpenDoor.generated.h"
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -24,7 +27,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	void RotateDoor(float DeltaTime);
+	void OpenDoor(float DeltaTime);
+	void CloseDoor(float DeltaTime);
 private:
 	UPROPERTY(EditAnywhere)	float m_targetYaw = 90.f;
 	float m_currentYaw, m_initialYaw;

@@ -26,6 +26,7 @@ void UOpenDoor::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s has the openDoor component, but no pressure plate set"), *GetOwner()->GetName());
 	}
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 
@@ -35,11 +36,14 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	if(pressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
-		RotateDoor(DeltaTime);
+		OpenDoor(DeltaTime);
+	}
+	else{
+		CloseDoor(DeltaTime);
 	}
 }
 
-void UOpenDoor::RotateDoor(float DeltaTime)
+void UOpenDoor::OpenDoor(float DeltaTime)
 {
 	m_currentYaw = FMath::FInterpConstantTo(m_currentYaw, m_targetYaw, DeltaTime, 45);
 	FRotator doorRotation = GetOwner()->GetActorRotation();
@@ -47,3 +51,10 @@ void UOpenDoor::RotateDoor(float DeltaTime)
 	GetOwner()->SetActorRotation(doorRotation);
 }
 
+void UOpenDoor::CloseDoor(float DeltaTime)
+{
+	m_currentYaw = FMath::FInterpConstantTo(m_currentYaw, m_initialYaw, DeltaTime, 45);
+	FRotator doorRotation = GetOwner()->GetActorRotation();
+	doorRotation.Yaw = m_currentYaw;
+	GetOwner()->SetActorRotation(doorRotation);
+}
