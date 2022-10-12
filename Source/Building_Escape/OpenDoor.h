@@ -31,7 +31,7 @@ public:
 	void CloseDoor(float DeltaTime);
 private:
 	UPROPERTY(EditAnywhere)	float m_targetYaw = 90.f;
-	float m_currentYaw, m_initialYaw;
+	float m_currentYaw, m_initialYaw, CloseDoorDelay = 1.f, DoorLastOpened = 0.f;
 	UPROPERTY(EditAnywhere) ATriggerVolume* pressurePlate;
-	UPROPERTY(EditAnywhere) AActor* ActorThatOpens;
+	AActor* ActorThatOpens;
 };
