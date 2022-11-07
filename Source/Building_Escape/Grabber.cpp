@@ -1,7 +1,10 @@
 // Copyright Juan Aguilera (@juan.gdev)
 
-
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 #include "Grabber.h"
+
+#define OUT //Used for our variables that are output parameters
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -18,9 +21,6 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
-	
 }
 
 
@@ -28,6 +28,9 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	UE_LOG(LogTemp, Warning, TEXT("Testing the grabber component on custom pawn"));
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotation;
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewPointLocation, OUT PlayerViewPointRotation);
+	UE_LOG(LogTemp, Warning, TEXT("Player Location: %s \nPlayer Rotation:%s"), *PlayerViewPointLocation.ToString(), *PlayerViewPointRotation.ToString());
 }
 
