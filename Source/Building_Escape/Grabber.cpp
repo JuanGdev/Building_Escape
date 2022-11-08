@@ -36,15 +36,24 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	FColor test;
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
-	DrawDebugLine(
-		GetWorld(),
+	// DrawDebugLine(
+	// 	GetWorld(),
+	// 	PlayerViewPointLocation,
+	// 	LineTraceEnd,
+	// 	FColor (test.MakeRandomColor()),
+	// 	false,
+	// 	0.f,
+	// 	0,
+	// 	5.f //width
+	// );
+	FHitResult Hit; //Out parameter
+	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
+	GetWorld()->LineTraceSingleByObjectType(
+		OUT Hit,
 		PlayerViewPointLocation,
 		LineTraceEnd,
-		FColor (test.MakeRandomColor()),
-		false,
-		0.f,
-		0,
-		5.f //width
+		FCollisionObjectQueryParams (ECollisionChannel::ECC_PhysicsBody),
+		TraceParams
 	);
 }
 
