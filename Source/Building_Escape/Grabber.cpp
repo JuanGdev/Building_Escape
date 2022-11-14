@@ -23,7 +23,6 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 
@@ -32,20 +31,20 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT PlayerViewPointLocation, OUT PlayerViewPointRotation);
-	//UE_LOG(LogTemp, Warning, TEXT("Player Location: %s \nPlayer Rotation:%s"), *PlayerViewPointLocation.ToString(), *PlayerViewPointRotation.ToString());
-
-	FColor test;
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
-	// DrawDebugLine(
-	// 	GetWorld(),
-	// 	PlayerViewPointLocation,
-	// 	LineTraceEnd,
-	// 	FColor (test.MakeRandomColor()),
-	// 	false,
-	// 	0.f,
-	// 	0,
-	// 	5.f //width
-	// );
+	
+	DrawDebugLine(
+		GetWorld(),
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FColor(182.f, 149.f, 192.f),
+		false,
+		0.f,
+		0,
+		5.f //width
+	);
+
+	//Logging the hit
 	FHitResult Hit; //Out parameter
 	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
 	GetWorld()->LineTraceSingleByObjectType(
@@ -55,5 +54,11 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		FCollisionObjectQueryParams (ECollisionChannel::ECC_PhysicsBody),
 		TraceParams
 	);
-}
+	
+	AActor* ActorHit = Hit.GetActor();
 
+	if(ActorHit)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Line trace has hit: %s"), *(ActorHit->GetName()));
+	}
+}
