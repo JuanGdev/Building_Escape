@@ -24,6 +24,8 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+
 	if(PhysicsHandle)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Everything is right!"));
@@ -32,6 +34,10 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("%s does not have any PhysicsHandleComponent"), *GetOwner()->GetName());
 	}
 
+	if(InputComponent){
+		UE_LOG(LogTemp, Warning, TEXT("Input component ready!"));
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+	}
 }
 
 
@@ -70,4 +76,9 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	{
 		UE_LOG(LogTemp, Error, TEXT("Line trace has hit: %s"), *(ActorHit->GetName()));
 	}
+}
+
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Action: Grab"));
 }
