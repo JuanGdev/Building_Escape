@@ -13,8 +13,8 @@
 		"typescript.tsc.autoDetect": "off",
 		"C_Cpp.default.forcedInclude": [
 			"${default}",
-			"C:\\Users\\juana\\Documents\\Unreal Projects\\Building_Escape\\Intermediate\\Build\\Win64\\UE4Editor\\Development\\Building_Escape\\Definitions.Building_Escape.h",
-			"C:\\Users\\juana\\Documents\\Unreal Projects\\Building_Escape\\Intermediate\\Build\\Win64\\Building_EscapeEditor\\Development\\Engine\\SharedPCH.Engine.ShadowErrors.h"
+			"C:\\Users\\juana\\OneDrive - Universidad de Guanajuato\\Documentos\\Unreal Projects\\Building_Escape\\Intermediate\\Build\\Win64\\UE4Editor\\Development\\Building_Escape\\Definitions.Building_Escape.h",
+			"C:\\Users\\juana\\OneDrive - Universidad de Guanajuato\\Documentos\\Unreal Projects\\Building_Escape\\Intermediate\\Build\\Win64\\Building_EscapeEditor\\Development\\Engine\\SharedPCH.Engine.ShadowErrors.h"
 		]
 	},
 	"extensions": {

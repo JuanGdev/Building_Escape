@@ -34,7 +34,7 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	if(pressurePlate->IsOverlappingActor(ActorThatOpens))
+	if(TotalMassOfActors() > 50.f)
 	{
 		OpenDoor(DeltaTime);
 		DoorLastOpened = GetWorld()->GetTimeSeconds();
@@ -59,4 +59,13 @@ void UOpenDoor::CloseDoor(float DeltaTime)
 	FRotator doorRotation = GetOwner()->GetActorRotation();
 	doorRotation.Yaw = m_currentYaw;
 	GetOwner()->SetActorRotation(doorRotation);
+}
+
+float UOpenDoor::TotalMassOfActors() const
+{
+	float TotalMass = 0.f;
+	//	Find All overlapping actors
+	TArray<AActor*> OverlappingActors;
+	//	Add up their masses
+	return TotalMass;
 }
